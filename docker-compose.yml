@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+
+    flask:
+        build: ./flask # follow this relative path to find a dockerfile to build flask container 
+        container_name: flask
+        restart: always
+        environment:
+            - APP_NAME=MyFlaskApp
+        expose: # expose ports to other containers in the same network
+            - 8080
+    
+    nginx:
+        build: ./nginx
+        container_name: nginx
+        restart: always
+        ports:
+            - "80:80"
